@@ -1,0 +1,114 @@
++package org.eolang.cln
++alias org.eolang.cln.list
++alias org.eolang.io.stdout
++alias org.eolang.txt.sprintf
++junit
+
+[] > test-memory
+  list > a
+  eq. > @
+    TRUE
+    TRUE
+
+[] > test-kek
+  * 1 2 3 > arr
+  memory > x
+  seq > @
+    x.write arr
+    x.get 0 > a
+    stdout
+      sprintf
+        "\n\n %d \n\n"
+        a
+
+[] > test-list
+
+  list > lst
+  seq > @
+    lst.push 10
+    lst.push 20
+    eq.
+      lst.size
+      2
+
+[] > test-cage
+
+  [args...] > i-comb
+    args > @
+
+  [args...] > k-comb
+    args > @
+
+  [x y z] > s-comb
+    x z (y z) > @
+
+  [x y z] > b-comb
+    x (y z) > @
+
+  [args...] > just
+    * > tmp
+    seq > @
+      mapi.
+        args
+        [current index]
+          seq > @
+            if.
+              not.
+                or.
+                  index.eq 0
+                  index.eq 1
+              []
+                seq > @
+                  tmp.append current
+
+              []
+                seq > @
+                  current
+            index.add 1
+      tmp
+
+  [x] > obj
+    [] > print
+      stdout > @
+        sprintf
+          "\n ----> %s \n"
+          x
+  [args...] > print
+    seq > @
+      stdout
+        sprintf "\n\n ["
+      each.
+        args
+        [i]
+          stdout > @
+            sprintf "%s, "
+            i
+      stdout
+        sprintf " ] \n\n"
+
+  [] > kek
+    memory > mFirst
+    seq > @
+      mFirst.write 1
+      if.
+        not.
+          or.
+            mFirst.eq 1
+            mFirst.eq 2
+        stdout "SAD"
+        stdout "OK"
+
+  [args...] > arras
+    args.append "hi" > tmp
+    seq > @
+      tmp
+
+  obj "a" > a
+  obj "b" > b
+  obj "c" > c
+  seq > @
+    (i-comb a b c) > res
+    (res.get 0).print
+    (i-comb res b c) > tmp
+    kek
+    TRUE
