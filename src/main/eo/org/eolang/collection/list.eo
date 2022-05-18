@@ -2,77 +2,73 @@
 +rt jvm org.eolang:eo-collection:0.0.0
 +alias org.eolang.gray.cage
 
-[] > node
-  [v] > new
+[] > list
+  cage > head
+  memory > size
+  memory > tmpsize
+
+  [] > last
+    memory > counter
+    cage > tmp
+    tmp' > copy
+    seq > @
+      counter.write 1
+      tmp.write head
+      while.
+        counter.less tmpsize
+        [i]
+          seq > @
+            counter.write (counter.add 1)
+            copy.<
+            tmp.write (copy.next)
+      tmp
+
+  [val] > push
+    node > tmp
+    seq > @
+      tmp.new val
+      if.
+        size.is-empty
+        []
+          seq > @
+            size.write 1
+            head.write tmp
+        []
+          seq > @
+            tmpsize.write size
+            size.write (size.add 1)
+            last.next.write tmp
+
+  [x] > get
+    memory > counter
+    cage > tmp
+    tmp' > copy
+    seq > @
+      counter.write 0
+      tmp.write head
+      if.
+        x.eq 0
+        tmp.value
+        []
+          seq > @
+            while.
+              counter.less x
+              [i]
+                seq > @
+                  counter.write (counter.add 1)
+                  copy.<
+                  tmp.write (copy.next)
+            tmp.value
+
+  [] > pop
+    cage > tmp
+    seq > @
+      size.write (size.sub 1)
+      tmp.write (head.next)
+      head.write tmp
+
+  [] > node
     memory > value
     cage > next
-    seq > @
-      value.write v
-
-[] > list
-  [] > new
-    cage > head
-    memory > size
-    memory > tmpsize
-
-    [] > last
-      memory > counter
-      cage > tmp
-      tmp' > copy
-      seq > @
-        counter.write 1
-        tmp.write head
-        while.
-          counter.less tmpsize
-          [i]
-            seq > @
-              counter.write (counter.add 1)
-              copy.<
-              tmp.write (copy.next)
-        tmp
-
-    [val] > push
-      cage > newnode
-      node > tmp
-      seq > @
-        tmp.new val
-        newnode.write tmp
-        if.
-          size.is-empty
-          []
-            seq > @
-              size.write 1
-              head.write tmp
-          []
-            seq > @
-              tmpsize.write size
-              size.write (size.add 1)
-              last.next.write newnode
-
-    [x] > get
-      memory > counter
-      cage > tmp
-      tmp' > copy
-      seq > @
-        counter.write 0
-        tmp.write head
-        if.
-          x.eq 0
-          tmp.value
-          []
-            seq > @
-              while.
-                counter.less x
-                [i]
-                  seq > @
-                    counter.write (counter.add 1)
-                    copy.<
-                    tmp.write (copy.next)
-              tmp.value
-
-    [] > pop
-      cage > tmp
-      seq > @
-        size.write (size.sub 1)
-        tmp.write (head.next)
-        head.write tmp
+    [v] > new
+      value.write v > @

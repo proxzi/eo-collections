@@ -4,10 +4,7 @@
 
 [] > node
   [v] > new
-    memory > value
+    cage > value
     cage > next
     seq > @
       value.write v
-      []
-        [] > get
-          value > @

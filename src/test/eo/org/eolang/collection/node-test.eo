@@ -4,5 +4,6 @@
 
 [] > test-node
   node.new 5 > node1
+  node.new 10 > node2
   seq > @
     TRUE

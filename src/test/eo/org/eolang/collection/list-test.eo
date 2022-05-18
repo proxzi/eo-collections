@@ -8,6 +8,9 @@
   list > lst
   cage > a
   seq > @
+    sprintf
+      "hi %s"
+      "s"
     TRUE
 
 [] > test-list-m-get1
@@ -24,25 +27,18 @@
           [] > next
             ^.next > @
 
-  [] > book
-    [i] > new
-      cage > id
-      seq > @
-        id.write i
-        []
-          [i] > move
-            id.write i > @
-          [] > path
-            sprintf > @
-              "tmp/%d.txt"
-              id
+  [i] > book
+    cage > id
+    cage > li
+    seq > @
+      id.write i
 
-  book.new 10 > a
+  book 10 > a
+  book 5 > b
   seq > @
-    a.move 5
-    a.id.write 10
+    b.li.write a
     eq.
-      a.id
+      b.li.id
       10
 
 [] > test-list-m-get2
