@@ -1,0 +1,10 @@
++package org.eolang.combinator
++alias org.eolang.combinator.k-comb
++junit
+
+[] > test-k-comb-truth
+  k-comb "a" "b" "c" > comb
+  and. > @
+    comb.length.eq 2
+    (comb.get 0).eq "b"
+    (comb.get 1).eq "c"

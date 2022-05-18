@@ -1,0 +1,66 @@
++package org.eolang.collection
++alias org.eolang.collection.list
++alias org.eolang.gray.cage
++alias org.eolang.txt.sprintf
++junit
+
+[] > test-list-m-get
+  list > lst
+  cage > a
+  seq > @
+    TRUE
+
+[] > test-list-m-get1
+
+  [] > node
+    [v] > new
+      cage > value
+      cage > next
+      seq > @
+        value.write v
+        []
+          [] > value
+            ^.value > @
+          [] > next
+            ^.next > @
+
+  [] > book
+    [i] > new
+      cage > id
+      seq > @
+        id.write i
+        []
+          [i] > move
+            id.write i > @
+          [] > path
+            sprintf > @
+              "tmp/%d.txt"
+              id
+
+  book.new 10 > a
+  seq > @
+    a.move 5
+    a.id.write 10
+    eq.
+      a.id
+      10
+
+[] > test-list-m-get2
+  list > lst
+  seq > @
+    TRUE
+
+[] > test-list-m-pop
+  list > lst
+  seq > @
+    TRUE
+
+[] > test-list-m-push
+  list > lst
+  seq > @
+    TRUE
+
+[] > test-list-m-insert
+  list > lst
+  seq > @
+    TRUE

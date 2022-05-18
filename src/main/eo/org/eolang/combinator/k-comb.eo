@@ -1,0 +1,36 @@
++package org.eolang.combinator
++rt jvm org.eolang:eo-collection:0.0.0
+
+[arr start] > slicefrom
+  slice > @
+    arr
+    start
+    arr.length
+
+[arr start end] > slice
+  subSlice > @
+    arr
+    *
+    start
+    end
+
+[arr accum start end] > subSlice
+  if. > @
+    less.
+      start
+      end
+    subSlice
+      arr
+      append.
+        accum
+        get.
+          arr
+          start
+      add.
+        start
+        1
+      end
+    accum
+
+[args...] > k-comb
+  slicefrom args 1 > @

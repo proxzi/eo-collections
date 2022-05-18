@@ -1,0 +1,47 @@
++package org.eolang.combinator
++rt jvm org.eolang:eo-collection:0.0.0
+
+[arr] > for
+  subfor > @
+    arr
+    *
+    0
+
+[arr accum i] > subfor
+  if. > @
+    less.
+      i
+      length.
+        arr
+    subfor
+      arr
+      append.
+        accum
+        if.
+          eq.
+            i
+            1
+          get.
+            arr
+            2
+          if.
+            eq.
+              i
+              2
+            *
+              get.
+                arr
+                1
+              get.
+                arr
+                2
+            get.
+              arr
+              i
+      add.
+        i
+        1
+    accum
+
+[args...] > s-comb
+  for args > @

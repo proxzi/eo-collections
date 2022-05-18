@@ -1,0 +1,10 @@
++package org.eolang.collection
++rt jvm org.eolang:eo-collection:0.0.0
++alias org.eolang.gray.cage
+
+[] > node
+  [v] > new
+    memory > value
+    cage > next
+    seq > @
+      value.write v

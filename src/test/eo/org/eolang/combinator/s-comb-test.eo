@@ -1,0 +1,17 @@
++package org.eolang.combinator
++alias org.eolang.combinator.s-comb
++junit
+
+[] > test-s-comb-truth
+  "a" > a
+  "b" > b
+  "c" > c
+  "d" > d
+  seq > @
+    s-comb a b c d > res
+    and.
+      (res.get 0).eq "a"
+      (res.get 1).eq "c"
+      ((res.get 2).get 0).eq "b"
+      ((res.get 2).get 1).eq "c"
+      (res.get 3).eq "d"
