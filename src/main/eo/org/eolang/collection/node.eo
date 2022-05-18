@@ -8,3 +8,6 @@
     cage > next
     seq > @
       value.write v
+      []
+        [] > get
+          value > @
