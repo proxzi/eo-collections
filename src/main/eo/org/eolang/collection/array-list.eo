@@ -7,6 +7,7 @@
     greater. > @
       index-of el
       -1
+
   # return -1 if index out of range
   [el] > index-of
 
@@ -118,4 +119,50 @@
                   i.sub 1
           copy.length.sub 1
         FALSE
+
+  [from-idx to-idx] > sub-list
+
+    array-list > @
+      rec-sub-list
+        arr
+        *
+        from-idx
+        to-idx
+
+    [in-arr accum start end] > rec-sub-list
+      if. > @
+        less.
+          start
+          end
+        rec-sub-list
+          in-arr
+          append.
+            accum
+            get.
+              in-arr
+              start
+          add.
+            start
+            1
+          end
+        accum
+
+  [i] > remove
+
+    array-list > @
+      reduce.
+        (end-arr.arr)
+        (begin-arr.arr)
+        [res cur]
+          append. > @
+            res
+            cur
+
+    sub-list > begin-arr
+      0
+      i
+
+    sub-list > end-arr
+      (i.add 1)
+      (arr.length)
 

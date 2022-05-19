@@ -2,6 +2,16 @@
 +alias org.eolang.collection.array-list
 +junit
 
+[] > test-array-list-get
+  array-list (* "apple" "egg" "baby" "carrot") > a
+  and. > @
+    eq.
+      a.get 0
+      "apple"
+    eq.
+      a.get 2
+      "baby"
+
 [] > test-array-list-index-of
   array-list (* 1 2 3) > arr
   eq. > @
@@ -54,3 +64,20 @@
   eq. > @
     (a.insert 2 "baby")
     b
+
+[] > test-array-list-sub-list
+  array-list (* "apple" "egg" "baby" "pineapple" "carrot") > a
+  array-list (* "apple" "egg" "baby") > b
+  eq. > @
+    (a.sub-list 0 3)
+    b
+
+[] > test-array-list-remove-index
+  array-list (* "apple" "egg" "baby" "pineapple" "carrot") > a
+  array-list (* "apple" "egg" "baby" "carrot") > b
+  eq. > @
+    remove.
+      a
+      3
+    b
+
