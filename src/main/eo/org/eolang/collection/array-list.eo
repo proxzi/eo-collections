@@ -39,8 +39,8 @@
   [arr] > add-all
     array-list > @
       reduce.
-        array
         arr.array
+        array
         [res cur]
           append. > @
             res

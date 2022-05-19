@@ -1,6 +1,5 @@
 +package org.eolang.collection
 +alias org.eolang.collection.array-list
-+alias org.eolang.io.stdout
 +junit
 
 [] > test-array-list-index-of
@@ -43,11 +42,8 @@
 
 [] > test-array-list-add-all
   array-list (* "apple" "egg") > a
-  array-list (* "pineapple" "carrot") > b
+  array-list (* "pineapple" "carrot ") > b
   array-list (* "apple" "egg" "pineapple" "carrot") > c
-  [arr] > print
-    arr.array.each > @
-      [i] (stdout i > @)
-  seq > @
-    print (a.add-all b)
-    TRUE
+  eq. > @
+    (a.add-all b)
+    c
