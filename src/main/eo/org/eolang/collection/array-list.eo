@@ -1,16 +1,17 @@
 +package org.eolang.collection
 +rt jvm org.eolang:eo-collection:0.0.0
 
-[array] > array-list
+[arr] > array-list
 
   [el] > contains
     greater. > @
       index-of el
       -1
-
+  # return -1 if index out of range
   [el] > index-of
+
     rec-index-of > @
-      array
+      arr
       el
       0
 
@@ -33,26 +34,69 @@
   [el] > add
     array-list > @
       append.
-        array
+        arr
         el
 
-  [arr] > add-all
+  [in-arr] > add-all
     array-list > @
       reduce.
-        arr.array
-        array
+        in-arr.arr
+        arr
         [res cur]
           append. > @
             res
             cur
 
-  [i] > get
-    array.get i > @
+  [i el] > insert
 
-  [arr] > eq
+    array-list > @
+      reduce.
+        end-arr
+        append.
+          begin-arr
+          el
+        [res cur]
+          append. > @
+            res
+            cur
+
+    rec-insert > begin-arr
+      arr
+      *
+      0
+      i
+
+    rec-insert > end-arr
+      arr
+      *
+      i
+      (arr.length)
+
+    [in-arr accum start end] > rec-insert
+      if. > @
+        less.
+          start
+          end
+        rec-insert
+          in-arr
+          append.
+            accum
+            get.
+              in-arr
+              start
+          add.
+            start
+            1
+          end
+        accum
+
+  [i] > get
+    arr.get i > @
+
+  [in-arr] > eq
     equalarrs > @
-      arr.array
-      array
+      in-arr.arr
+      arr
 
     [x y] > equalarrs
       y > copy

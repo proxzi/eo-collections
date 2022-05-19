@@ -47,3 +47,10 @@
   eq. > @
     (a.add-all b)
     c
+
+[] > test-array-list-insert
+  array-list (* "apple" "egg" "pineapple" "carrot") > a
+  array-list (* "apple" "egg" "baby" "pineapple" "carrot") > b
+  eq. > @
+    (a.insert 2 "baby")
+    b
