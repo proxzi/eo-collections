@@ -47,13 +47,70 @@ This repository is for the [objectionary](https://github.com/yegor256/objectiona
 
 Collections were examined for signs of their need for the EO language. From the research, it was concluded that it is necessary to implement the following objects:
 
+## How to use array-list
+
+This is how you can insert element of index in to **array-list**
+
+```
++alias org.eolang.collection.array-list
++alias org.eolang.io.stdout
++alias org.eolang.txt.sprintf
+
+array-list (* "baby" "mam" "dog" "cat") > arr
+arr.insert "hello" 2
+seq > @
+  stdout "[ "
+  arr.each
+    [i]
+    stdout
+      sprintf
+      "%s, "
+      i
+  stdout "]"
+```
+
+Output: ``[ baby, mam, dog, hello, cat, ]``
+
+Simple manipulations:
+
+```
+# Make a new object list
++alias org.eolang.collection.array-list
+array-list (* "baby" "mam" "dog" "cat") > arr
+
+# return array with added element to end of array
+arr.add "mouse"
+
+# Get size of array
+arr.size
+
+# Return list without head
+arr.insert "hello" 2
+
+# Insert in list (first attribute is value second attribute is index)
+arr.insert 10 3
+
+# Get element for index
+arr.get 2
+
+# Return list without element of index
+arr.remove 3
+
+# Returns a view of the portion of this list between the specified fromIndex, inclusive, and toIndex, exclusive
+arr.sub-list 0 2
+
+# Appends all of the elements in the specified collection to the end of this list and return merged list
+arr.add-all (* 1 2 3) (* 4 5 6)
+
+```
+
 ## How to use list
 The first collection that it was decided to create is **list**
 
 This is how you can see second item in to **list**
 
 ```
-+alias org.eolang.cln.list
++alias org.eolang.collection.list
 +alias org.eolang.io.stdout
 +alias org.eolang.txt.sprintf
 
@@ -99,7 +156,7 @@ lst.remove 3
 This is how you can see create **set**
 
 ```
-+alias org.eolang.cln.set
++alias org.eolang.collection.set
 +alias org.eolang.io.stdout
 +alias org.eolang.txt.sprintf
 
@@ -143,7 +200,7 @@ s.remove 1
 This is how you can see create **map**
 
 ```
-+alias org.eolang.cln.map
++alias org.eolang.collection.map
 +alias org.eolang.io.stdout
 +alias org.eolang.txt.sprintf
 
