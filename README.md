@@ -62,10 +62,10 @@ seq > @
   stdout "[ "
   arr.each
     [i]
-    stdout
-      sprintf
-      "%s, "
-      i
+      stdout
+        sprintf
+        "%s, "
+        i
   stdout "]"
 ```
 
