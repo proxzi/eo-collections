@@ -1,9 +1,0 @@
-+package org.eolang.collection
-+alias org.eolang.collection.node
-+junit
-
-[] > test-node
-  node.new 5 > node1
-  node.new 10 > node2
-  seq > @
-    TRUE

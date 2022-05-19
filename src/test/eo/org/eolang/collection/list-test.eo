@@ -15,41 +15,30 @@
 
 [] > test-list-m-get1
 
-  [] > node
-    [v] > new
-      cage > value
-      cage > next
-      seq > @
-        value.write v
-        []
-          [] > value
-            ^.value > @
-          [] > next
-            ^.next > @
-
-  [i] > book
-    cage > id
-    cage > li
-    seq > @
-      id.write i
-
-  book 10 > a
-  book 5 > b
+  list > lst
   seq > @
-    b.li.write a
-    eq.
-      b.li.id
-      10
+    TRUE
 
 [] > test-list-m-get2
   list > lst
   seq > @
-    TRUE
+    lst.push 10
+    lst.push 20
+    lst.push 30
+    eq.
+      lst.head.value
+      10
 
 [] > test-list-m-pop
   list > lst
   seq > @
-    TRUE
+    lst.push 5
+    lst.push 6
+    lst.push 8
+    lst.pop
+    eq.
+      lst.get 0
+      6
 
 [] > test-list-m-push
   list > lst

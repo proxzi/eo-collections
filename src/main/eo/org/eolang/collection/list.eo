@@ -23,10 +23,15 @@
             tmp.write (copy.next)
       tmp
 
-  [val] > push
-    node > tmp
+  [val] > createnode
+    node > t
     seq > @
-      tmp.new val
+      t.new val
+      t
+
+  [val] > push
+    createnode val > tmp
+    seq > @
       if.
         size.is-empty
         []
