@@ -1,0 +1,53 @@
++package org.eolang.collection
++alias org.eolang.collection.array-list
++alias org.eolang.io.stdout
++junit
+
+[] > test-array-list-index-of
+  array-list (* 1 2 3) > arr
+  eq. > @
+    arr.index-of 3
+    2
+
+[] > test-array-list-index-of-not
+  array-list (* 1 2 3) > arr
+  eq. > @
+    arr.index-of 6
+    -1
+
+[] > test-array-list-contains-true
+  array-list (* 1 2 3) > arr
+  eq. > @
+    arr.contains 2
+    TRUE
+
+[] > test-array-list-contains-false
+  array-list (* 1 2 3) > arr
+  eq. > @
+    arr.contains 5
+    FALSE
+
+[] > test-array-list-eq
+  array-list (* 1 2 3) > a
+  array-list (* 1 2 3) > b
+  eq. > @
+    a
+    b
+
+[] > test-array-list-add
+  array-list (* 1 2 3) > a
+  array-list (* 1 2 3 10) > b
+  eq. > @
+    (a.add 10)
+    b
+
+[] > test-array-list-add-all
+  array-list (* "apple" "egg") > a
+  array-list (* "pineapple" "carrot") > b
+  array-list (* "apple" "egg" "pineapple" "carrot") > c
+  [arr] > print
+    arr.array.each > @
+      [i] (stdout i > @)
+  seq > @
+    print (a.add-all b)
+    TRUE
