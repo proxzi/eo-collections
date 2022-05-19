@@ -69,7 +69,7 @@ seq > @
   stdout "]"
 ```
 
-Output: ``[ baby, mam, dog, hello, cat, ]``
+Output: ``[ baby, mam, hello, dog, cat, ]``
 
 Simple manipulations:
 
