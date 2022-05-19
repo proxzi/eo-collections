@@ -57,8 +57,8 @@ This is how you can insert element of index in to **array-list**
 +alias org.eolang.txt.sprintf
 
 array-list (* "baby" "mam" "dog" "cat") > arr
-arr.insert "hello" 2 > copy
 seq > @
+  arr.insert "hello" 2 > copy
   stdout "[ "
   copy.each
     [i]
