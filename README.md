@@ -100,7 +100,7 @@ arr.remove 3
 arr.sub-list 0 2
 
 # Appends all of the elements in the specified collection to the end of this list and return merged list
-arr.add-all (* 1 2 3) (* 4 5 6)
+arr.add-all (array-list (* 1 2 3)) (array-list (* 4 5 6))
 
 ```
 
