@@ -25,12 +25,12 @@
         if.
           eq.
             el
-            (arr.get i)
+            arr.get i
           i
           rec-index-of
             arr
             el
-            (i.add 1)
+            i.add 1
 
   [el] > add
     array-list > @
@@ -53,9 +53,7 @@
     array-list > @
       reduce.
         end-arr
-        append.
-          begin-arr
-          el
+        begin-arr.append el
         [res cur]
           append. > @
             res
@@ -71,7 +69,7 @@
       arr
       *
       i
-      (arr.length)
+      arr.length
 
     [in-arr accum start end] > rec-insert
       if. > @
@@ -147,12 +145,12 @@
           end
         accum
 
-  [i] > remove
+  [i] > removei
 
     array-list > @
       reduce.
-        (end-arr.arr)
-        (begin-arr.arr)
+        end-arr.arr
+        begin-arr.arr
         [res cur]
           append. > @
             res
@@ -163,6 +161,55 @@
       i
 
     sub-list > end-arr
-      (i.add 1)
-      (arr.length)
+      i.add 1
+      arr.length
 
+  [el] > remove
+    removei > @
+      index-of
+        el
+
+  [f] > each
+    each. > @
+      arr
+      f
+
+  [] > size
+    arr.length > @
+
+  [i el] > set
+
+    array-list > @
+      reduce.
+        end-arr.arr
+        append.
+          begin-arr.arr
+          el
+        [res cur]
+          append. > @
+            res
+            cur
+
+    sub-list > begin-arr
+      0
+      i
+
+    sub-list > end-arr
+      i.add 1
+      arr.length
+
+  [] > as-array
+    arr > @
+
+  [] > is-empty
+    arr.is-empty > @
+
+  [f] > mapi
+    array-list > @
+      arr.mapi
+        f
+
+  [f] > map
+    array-list > @
+      arr.map
+        f
