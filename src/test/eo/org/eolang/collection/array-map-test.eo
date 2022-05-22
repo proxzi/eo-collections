@@ -1,0 +1,32 @@
++package org.eolang.collection
++rt jvm org.eolang:eo-collection:0.0.0
++alias org.eolang.collection.map-list
++junit
+
+[] > test-map-list-put
+  map-list * > m1
+  map-list * > m2
+  eq. > @
+    m1.put "first" 1
+    m2.put "first" 1
+
+[] > test-map-list-double-put
+  map-list * > m1
+  put. > a
+    put.
+      m1
+      "first"
+      1
+    "second"
+    2
+  put. > b
+    put.
+      m1
+      "first"
+      1
+    "second"
+    2
+  eq.
+    a
+    b
+  TRUE > @

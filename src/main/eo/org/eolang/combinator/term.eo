@@ -1,6 +1,43 @@
 +package org.eolang.combinator
 +rt jvm org.eolang:eo-collection:0.0.0
-#
-[arr] > term
++alias org.eolang.collection.array-list
+
+[cer] > term
+
+  array-list cer > arr-lst
 
   [] > deploy
+    cc arr-lst > @
+
+    [a] > cc
+      term > @
+        *
+          exec.
+            a.get 0
+            a.removei 0
+
+    [arr] > rec
+      if. > @
+        (arr.get 0).is-term
+        rec
+          []
+            seq > @
+              (arr.get 0).arr-lst > a
+              arr.removei 0 > b
+              a.add-all b
+        if.
+          (arr.get 0).is-comb
+          rec
+            []
+              exec. > @
+                arr.get 0
+                arr.removei 0
+          term arr
+
+  TRUE > is-term
+  FALSE > is-comb
+
+  [a] > eq
+    eq. > @
+      arr-lst
+      a.arr-lst

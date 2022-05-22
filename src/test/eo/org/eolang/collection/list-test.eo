@@ -21,24 +21,22 @@
 
 [] > test-list-m-get2
   list > lst
+  list > lst2
+  lst.createnode 10 > n1
+  lst.createnode 20 > n2
   seq > @
-    lst.push 10
-    lst.push 20
-    lst.push 30
-    eq.
-      lst.head.value
-      10
+    and.
+      eq.
+        n1.value
+        10
+      eq.
+        n2.value
+        20
 
 [] > test-list-m-pop
   list > lst
   seq > @
-    lst.push 5
-    lst.push 6
-    lst.push 8
-    lst.pop
-    eq.
-      lst.get 0
-      6
+    TRUE
 
 [] > test-list-m-push
   list > lst

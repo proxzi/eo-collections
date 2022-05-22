@@ -1,0 +1,12 @@
++package org.eolang.combinator
++rt jvm org.eolang:eo-collection:0.0.0
+
+[value] > expr
+
+  [e] > eq
+    eq. > @
+      e.value
+      value
+
+  FALSE > is-term
+  FALSE > is-comb

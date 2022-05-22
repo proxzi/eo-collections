@@ -1,3 +1,25 @@
+# The MIT License (MIT)
+#
+# Copyright (c) 2022 Dmitry Yakuba
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included
+# in all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
 +package org.eolang.collection
 +alias org.eolang.collection.array-list
 +alias org.eolang.io.stdout
@@ -59,6 +81,34 @@
     a.add-all b
     c
 
+[] > test-array-list-add-all-end
+  array-list (* "a" "c" "b" "c") > a
+  array-list (* "d") > b
+  array-list (* "a" "c" "b" "c" "d") > c
+  eq. > @
+    a.add-all b
+    c
+
+[] > test-array-list-add-all-objects
+
+  [x y] > pair
+    [p] > eq
+      and. > @
+        eq.
+          x
+          p.x
+        eq.
+          y
+          p.y
+  pair 1 2 > p1
+  pair 1 2 > p2
+  array-list (* "a" 1 "b" p1) > a
+  array-list (* "d") > b
+  array-list (* "a" 1 "b" p2 "d") > c
+  eq. > @
+    a.add-all b
+    c
+
 [] > test-array-list-insert
   array-list (* "apple" "egg" "pineapple" "carrot") > a
   array-list (* "apple" "egg" "baby" "pineapple" "carrot") > b
@@ -72,6 +122,19 @@
   eq. > @
     a.sub-list 0 3
     b
+
+[] > test-array-list-sub-list-of-end
+  array-list (* "apple" "egg" "baby" "pineapple" "carrot") > a
+  array-list (* "carrot") > b
+  eq. > @
+    a.sub-list 4 (a.size)
+    b
+
+[] > test-array-list-size
+  array-list (* "apple" "egg" "baby" "pineapple" "carrot") > a
+  eq. > @
+    a.size
+    5
 
 [] > test-array-list-remove-index
   array-list (* "apple" "egg" "baby" "pineapple" "carrot") > a

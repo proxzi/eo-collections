@@ -1,11 +1,12 @@
 +package org.eolang.combinator
 +alias org.eolang.combinator.i-comb
++alias org.eolang.collection.array-list
 +junit
 
 [] > test-i-comb-truth
-  i-comb "a" "b" "c" > comb
-  and. > @
-    comb.length.eq 3
-    (comb.get 0).eq "a"
-    (comb.get 1).eq "b"
-    (comb.get 2).eq "c"
+  i-comb > a
+  array-list (* "a" "b" "c" "d") > lst
+  array-list (* "a" "b" "c" "d") > res
+  eq. > @
+    a.exec lst
+    res

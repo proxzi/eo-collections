@@ -1,17 +1,119 @@
 +package org.eolang.combinator
 +alias org.eolang.combinator.s-comb
++alias org.eolang.collection.array-list
++alias org.eolang.combinator.term
++alias org.eolang.combinator.expr
++alias org.eolang.combinator.k-comb
 +junit
 
 [] > test-s-comb-truth
-  "a" > a
-  "b" > b
-  "c" > c
-  "d" > d
-  seq > @
-    s-comb a b c d > res
-    and.
-      (res.get 0).eq "a"
-      (res.get 1).eq "c"
-      ((res.get 2).get 0).eq "b"
-      ((res.get 2).get 1).eq "c"
-      (res.get 3).eq "d"
+  s-comb > a
+  array-list > lst
+    *
+      "a"
+      "b"
+      "c"
+      "d"
+
+  array-list > res
+    *
+      "a"
+      "c"
+      term
+        *
+          "b"
+          "c"
+      "d"
+  eq. > @
+    a.exec lst
+    res
+
+[] > test-s-comb-objects
+  expr "a" > a
+  expr "b" > b
+  expr "c" > c
+  expr "d" > d
+  s-comb > st
+  array-list > lst
+    *
+      s-comb
+      k-comb
+      c
+      d
+      a
+      term
+        *
+          a
+          c
+      c
+
+  array-list > res
+    *
+      s-comb
+      c
+      term
+        *
+          k-comb
+          c
+      a
+      term
+        *
+          a
+          c
+      c
+  eq. > @
+    st.exec lst
+    res
+
+[] > test-s-comb
+  expr "a" > a
+  expr "b" > b
+  expr "c" > c
+  s-comb > st
+  array-list > lst
+    *
+      s-comb
+      term
+        *
+          k-comb
+          s-comb
+      k-comb
+      a
+      b
+      c
+
+  array-list > res
+    *
+      s-comb
+      term
+        *
+          k-comb
+          s-comb
+      k-comb
+      a
+      b
+      c
+
+  eq. > @
+    st.exec lst
+    res
+
+[] > test-s-comb-size
+  expr "a" > a
+  expr "b" > b
+  expr "c" > c
+  array-list > lst
+    *
+      s-comb
+      term
+        *
+          k-comb
+          s-comb
+      k-comb
+      a
+      b
+      c
+
+  eq. > @
+    lst.size
+    6

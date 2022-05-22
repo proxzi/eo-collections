@@ -1,47 +1,35 @@
 +package org.eolang.combinator
 +rt jvm org.eolang:eo-collection:0.0.0
++alias org.eolang.collection.array-list
++alias org.eolang.combinator.term
 
-[arr] > for
-  subfor > @
-    arr
-    *
-    0
+[] > s-comb
+  "s" > name
+  [a] > exec
 
-[arr accum i] > subfor
-  if. > @
-    less.
-      i
-      length.
-        arr
-    subfor
-      arr
-      append.
-        accum
-        if.
-          eq.
-            i
-            1
-          get.
-            arr
-            2
-          if.
-            eq.
-              i
-              2
+    add-all. > @
+      result
+      end
+
+    a.sub-list 0 3 > start
+    a.sub-list > end
+      3
+      a.size
+
+    [] > result
+      array-list > @
+        *
+          start.get 0
+          start.get 2
+          term
             *
-              get.
-                arr
-                1
-              get.
-                arr
-                2
-            get.
-              arr
-              i
-      add.
-        i
-        1
-    accum
+              start.get 1
+              start.get 2
 
-[args...] > s-comb
-  for args > @
+  FALSE > is-term
+  TRUE > is-comb
+
+  [a] > eq
+    eq. > @
+      a.name
+      name

@@ -1,0 +1,97 @@
++package org.eolang.collection
++rt jvm org.eolang:eo-collection:0.0.0
++alias org.eolang.collection.array-list
+
+[list] > map-list
+
+  array-list list > pairs!
+
+  [] > size
+    pairs.size > @
+
+  [m] > eq
+    eq. > @
+      pairs
+      m.pairs
+
+  [k v] > put
+
+    if. > @
+      pairs.is-empty
+      add.
+        pairs
+        pair
+          k
+          v
+      rec-put
+        pairs
+        0
+        pair
+          k
+          v
+
+    [arr i p] > rec-put
+      if. > @
+        i.less arr.size
+        if.
+          eq.
+            (arr.get i)
+            p
+          map-list
+            set.
+              arr
+              i
+              pair
+                p.key
+                p.value
+          rec-put
+            arr
+            i.add 1
+            p
+        map-list
+          add.
+            arr
+            p
+
+  [k] > get
+    rec-get > @
+      pairs
+      0
+      k
+
+    [arr i key] > rec-get
+      if. > @
+        i.less arr.size
+        if.
+          eq.
+            (arr.get i).key
+            key
+          (arr.get i).value
+          rec-get
+            arr
+            i.add 1
+            key
+
+  [] > keys
+    rec > @
+      pairs
+      array-list *
+
+    [arr accum] > rec
+      add. > @
+        accum
+        (arr.get 0).key
+
+  [] > values
+    rec pairs > @
+
+    [arr accum] > rec
+      add. > @
+        accum
+        (arr.get 0).value
+
+[key value] > pair
+  [p] > eq
+    eq. > @
+      key
+      p.key

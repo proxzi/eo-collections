@@ -1,0 +1,113 @@
++package org.eolang.combinator
++alias org.eolang.combinator.s-comb
++alias org.eolang.combinator.k-comb
++alias org.eolang.combinator.term
++alias org.eolang.combinator.expr
++alias org.eolang.collection.array-list
++junit
+
+[] > test-eq
+  term > a
+    *
+      1
+      2
+  term > b
+    *
+      1
+      2
+  eq. > @
+    a
+    b
+
+[] > test-eq-complex
+  expr "a" > a
+  expr "b" > b
+  expr "c" > c
+  term > t1
+    *
+      s-comb
+      term
+        *
+          k-comb
+          s-comb
+      k-comb
+      a
+      b
+      c
+
+  term > t2
+    *
+      s-comb
+      term
+        *
+          k-comb
+          s-comb
+      k-comb
+      a
+      b
+      c
+  eq. > @
+    t1
+    t2
+
+[] > test-term-deploy
+  expr "a" > a
+  expr "b" > b
+  expr "c" > c
+  term > main
+    *
+      s-comb
+      term
+        *
+          k-comb
+          s-comb
+      k-comb
+      a
+      b
+      c
+
+  term > res
+    *
+      a
+      term
+        *
+          b
+          c
+
+  seq > @
+    TRUE
+
+[] > test-term-test-s-comb
+  expr "a" > a
+  expr "b" > b
+  expr "c" > c
+  term > t1
+    *
+      s-comb
+      term
+        *
+          k-comb
+          s-comb
+      k-comb
+      a
+      b
+      c
+
+  term > t2
+    *
+      array-list
+        term
+          *
+            k-comb
+            s-comb
+        a
+        term
+          *
+            k-comb
+            a
+        b
+        c
+
+  eq. > @
+    t1
+    t2

@@ -1,0 +1,42 @@
++package org.eolang.collection
++alias org.eolang.collection.array-set
++junit
+
+[] > test-array-set-add
+  array-set (* 1 2 3) > a
+  array-set (* 1 2 3 4) > b
+  eq. > @
+    b
+    a.add 4
+
+[] > test-array-set-insert
+  array-set (* 1 2 3) > a
+  array-set (* 1 2 5 3) > b
+  eq. > @
+    a.insert 2 5
+    b
+
+[] > test-array-set-insert-start
+  array-set (* 1 2 3) > a
+  array-set (* 5 1 2 3) > b
+  eq. > @
+    a.insert 0 5
+    b
+
+[] > test-array-set-add-no-add
+  array-set (* 1 2 3) > a
+  array-set (* 1 2 3) > b
+  eq. > @
+    b
+    a.add 2
+
+[] > test-array-set-create-empty
+  array-set * > a
+  a.is-empty > @
+
+[] > test-array-set-empty-add
+  array-set * > a
+  array-set (* 1) > res
+  eq. > @
+    a.add 1
+    res

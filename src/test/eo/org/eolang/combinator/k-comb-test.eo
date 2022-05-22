@@ -1,10 +1,33 @@
 +package org.eolang.combinator
 +alias org.eolang.combinator.k-comb
++alias org.eolang.combinator.i-comb
++alias org.eolang.collection.array-list
++alias org.eolang.combinator.expr
 +junit
 
 [] > test-k-comb-truth
-  k-comb "a" "b" "c" > comb
-  and. > @
-    comb.length.eq 2
-    (comb.get 0).eq "b"
-    (comb.get 1).eq "c"
+  k-comb > k
+  expr "a" > a
+  expr "b" > b
+  expr "c" > c
+  expr "d" > d
+  array-list > lst
+    *
+      a
+      i-comb
+      b
+      c
+      d
+  array-list > res
+    *
+      i-comb
+      b
+      c
+      d
+  eq. > @
+    res
+    k.exec lst
+
+[] > test-is-term
+  k-comb > a
+  a.is-term.not > @

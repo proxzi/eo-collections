@@ -1,0 +1,10 @@
++package org.eolang.combinator
++alias org.eolang.combinator.expr
++junit
+
+[] > test-expr
+  expr "a" > a
+  expr "a" > b
+  eq. > @
+    a
+    b

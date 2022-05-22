@@ -1,0 +1,49 @@
++package org.eolang.collection
++rt jvm org.eolang:eo-collection:0.0.0
++alias org.eolang.collection.array-list
+
+[arr] > array-set
+
+  array-list arr > as-array-list!
+
+  [el] > contains
+    as-array-list.contains el > @
+
+  [arr-lst] > contains-all
+    rec-contains arr-lst 0 > @
+
+    [arr-lst i] > rec-contains
+      if. > @
+        i.less arr-lst.size
+        if.
+          contains
+            arr-lst.get i
+          rec-contains
+            arr-lst
+            i.add 1
+          FALSE
+        TRUE
+
+  [el] > add
+    if. > @
+      contains el
+      array-set arr
+      array-set
+        (as-array-list.add el).as-array
+
+  [set] > eq
+    as-array-list.eq > @
+      set.as-array-list
+
+  [i el] > insert
+    if. > @
+      contains el
+      array-set arr
+      array-set
+        (as-array-list.insert i el).as-array
+
+  [] > size
+    as-array-list.size > @
+
+  [] > is-empty
+    as-array-list.is-empty > @

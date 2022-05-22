@@ -1,0 +1,46 @@
++package org.eolang.collection
++alias org.eolang.collection.list-m
++alias org.eolang.gray.cage
++alias org.eolang.gray.heap
++junit
+
+[] > test-list-m-push
+  list-m > lst
+  seq > @
+    lst.push 10
+    lst.push 20
+    lst.push 30
+    TRUE
+
+[] > test-li
+
+  [] > node
+    memory > value
+    cage > next
+    [v] > new
+      seq > @
+        value.write v
+        ^
+
+  node.new 10 > a
+  node.new 20 > b
+  node.new 30 > c
+  seq > @
+    b.next.write c
+    a.next.write b
+    eq.
+      a.next.next.value
+      30
+
+[] > test-he
+  heap 1024 > h
+  h.pointer 0 2 > p1
+  p1.add 2 > p2
+  p2.sub 1 > p3
+  and. > @
+    (p1.block 6).write ("HELLO!".as-bytes)
+    eq.
+      p2.block
+        2
+        [b] (b.as-string > @)
+      "O!"
